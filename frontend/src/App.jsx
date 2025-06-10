@@ -10,6 +10,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 
 export default function App() {
   return (
@@ -27,6 +28,8 @@ export default function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+        
           </Routes>
         </main>
         <Footer />
