@@ -1,7 +1,21 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-// Use Unsplash image URLs for real images:
+// Shared calamity background images (same as HowItWorks and Testimonials)
+const calamityBackgroundImages = [
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1465101178521-c1a9136a87e0?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80"
+];
+
 const causesData = [
+  // ... (same as your causesData array)
   {
     title: "Clean Water for All",
     description: "Help bring sustainable clean water to rural villages.",
@@ -127,6 +141,16 @@ const causesData = [
 export default function FeaturedCauses() {
   const scrollRef = useRef(null);
 
+  // Rotating background logic (shared, no custom hook)
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % calamityBackgroundImages.length);
+    }, 4000); // Same interval as Testimonials and HowItWorks
+    return () => clearInterval(interval);
+  }, []);
+
   const scroll = (offset) => {
     if (scrollRef.current) {
       scrollRef.current.scrollBy({
@@ -140,27 +164,39 @@ export default function FeaturedCauses() {
     <section
       id="featured-causes"
       style={{
-        padding: "50px 0 70px 0",
-        background: "linear-gradient(135deg, #f9f9f9 0%, #f7e2ff 100%)",
+        padding: "80px 0 110px 0",
+        background: `url(${calamityBackgroundImages[bgIndex]}) center/cover no-repeat fixed`,
         textAlign: "center",
         color: "#1a2330",
         position: "relative",
+        transition: "background-image 1s",
+        minHeight: "100vh",
       }}
     >
-      <div style={{ maxWidth: 1050, margin: "0 auto", position: "relative" }}>
-        <h2 style={{ fontSize: "2.5rem", fontWeight: "bold", marginBottom: 20, color: "#2557fa" }}>
+      <div style={{ maxWidth: 1350, margin: "0 auto", position: "relative", zIndex: 1 }}>
+        <h2 style={{
+          fontSize: "3.6rem",
+          fontWeight: "bold",
+          marginBottom: 32,
+          color: "#fff",
+          textShadow: "2px 4px 16px #000a"
+        }}>
           Featured Causes
         </h2>
-        <p style={{ fontSize: "1.15rem", color: "#a300ff", marginBottom: 32 }}>
+        <p style={{
+          fontSize: "1.55rem",
+          color: "#ffe1fa",
+          marginBottom: 48,
+          textShadow: "1px 2px 10px #0008"
+        }}>
           Explore some of the most impactful fundraising campaigns currently making a difference.
         </p>
-        {/* Swiper controls */}
         <button
           aria-label="Scroll left"
-          onClick={() => scroll(-300)}
+          onClick={() => scroll(-420)}
           style={{
             position: "absolute",
-            left: -15,
+            left: -25,
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
@@ -168,11 +204,11 @@ export default function FeaturedCauses() {
             border: "none",
             color: "#fff",
             borderRadius: "50%",
-            width: 40,
-            height: 40,
+            width: 56,
+            height: 56,
             cursor: "pointer",
-            fontSize: 22,
-            boxShadow: "0 2px 10px #a300ff22",
+            fontSize: 32,
+            boxShadow: "0 2px 16px #a300ff22",
             outline: "none",
           }}
         >
@@ -180,10 +216,10 @@ export default function FeaturedCauses() {
         </button>
         <button
           aria-label="Scroll right"
-          onClick={() => scroll(300)}
+          onClick={() => scroll(420)}
           style={{
             position: "absolute",
-            right: -15,
+            right: -25,
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
@@ -191,26 +227,25 @@ export default function FeaturedCauses() {
             border: "none",
             color: "#fff",
             borderRadius: "50%",
-            width: 40,
-            height: 40,
+            width: 56,
+            height: 56,
             cursor: "pointer",
-            fontSize: 22,
-            boxShadow: "0 2px 10px #a300ff22",
+            fontSize: 32,
+            boxShadow: "0 2px 16px #a300ff22",
             outline: "none",
           }}
         >
           &#8594;
         </button>
-        {/* Swiper */}
         <div
           ref={scrollRef}
           style={{
             display: "flex",
-            gap: 28,
+            gap: 48,
             overflowX: "auto",
             scrollSnapType: "x mandatory",
-            paddingBottom: 12,
-            paddingTop: 10,
+            paddingBottom: 18,
+            paddingTop: 22,
             scrollbarWidth: "none",
             WebkitOverflowScrolling: "touch",
           }}
@@ -219,53 +254,55 @@ export default function FeaturedCauses() {
             <div
               key={idx}
               style={{
-                background: cause.color,
-                borderRadius: "24px",
-                boxShadow: "0 2px 16px #2557fa11, 0 6px 30px #ff4bc81a",
-                padding: "18px 18px 22px 18px",
-                minWidth: 240,
-                maxWidth: 260,
-                flex: "0 0 240px",
+                background: "rgba(255,255,255,0.92)",
+                borderRadius: "32px",
+                boxShadow: "0 4px 36px #2557fa18, 0 12px 64px #ff4bc81a",
+                padding: "32px 28px 38px 28px",
+                minWidth: 310,
+                maxWidth: 340,
+                flex: "0 0 310px",
                 color: "#222",
                 scrollSnapAlign: "start",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 transition: "transform 0.2s, box-shadow 0.2s",
-                border: "2px solid #fff",
+                border: "2.5px solid #fff",
+                backdropFilter: "blur(2.5px)",
               }}
             >
               <img
                 src={cause.image}
                 alt={cause.title}
                 style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: "14px",
+                  width: 160,
+                  height: 160,
+                  borderRadius: "22px",
                   objectFit: "cover",
-                  marginBottom: 16,
-                  boxShadow: "0 2px 16px #2557fa22",
+                  marginBottom: 22,
+                  boxShadow: "0 4px 26px #2557fa22",
                   background: "#fff",
-                  border: "4px solid #fff",
+                  border: "6px solid #fff",
                 }}
               />
               <h3 style={{
                 color: "#2557fa",
                 fontWeight: 700,
-                fontSize: "1.18rem",
-                marginBottom: 10,
+                fontSize: "1.65rem",
+                marginBottom: 16,
                 marginTop: 0,
+                textAlign: "center"
               }}>{cause.title}</h3>
               <p style={{
                 color: "#a300ff",
-                fontSize: "1rem",
+                fontSize: "1.18rem",
                 margin: 0,
+                textAlign: "center"
               }}>{cause.description}</p>
             </div>
           ))}
         </div>
       </div>
-      {/* Hide native scrollbar */}
       <style>{`
         #featured-causes::-webkit-scrollbar {
           display: none;

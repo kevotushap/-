@@ -1,10 +1,8 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function DonateBanner({
   message = "Your kindness transforms lives. Make a difference today.",
   cta = "Donate Now",
-  to = "/causes",
   sparkles = true,
   style = {},
 }) {
@@ -47,8 +45,10 @@ export default function DonateBanner({
       <span>
         {message}
       </span>
-      <Link
-        to={to}
+      <a
+        href="https://www.paypal.com/donate/?hosted_button_id=PXSG8X767F6CU"
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           marginLeft: 22,
           background: hover
@@ -68,12 +68,13 @@ export default function DonateBanner({
           outline: "none",
           transition: "all 0.22s cubic-bezier(.24,1.39,.53,.97)",
           verticalAlign: "middle",
+          display: "inline-block",
         }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         {cta} <span role="img" aria-label="heart">❤️</span>
-      </Link>
+      </a>
       {sparkles && (
         <span
           aria-hidden

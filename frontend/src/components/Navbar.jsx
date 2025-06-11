@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+const translations = {
+  en: {
+    home: "Home",
+    causes: "Causes",
+    about: "About",
+    contact: "Contact",
+    switch: "Français",
+  },
+  fr: {
+    home: "Accueil",
+    causes: "Causes",
+    about: "À propos",
+    contact: "Contact",
+    switch: "English",
+  },
+};
+
 export default function Navbar() {
+  const [lang, setLang] = useState("en");
+
+  // Toggle language on button click
+  const toggleLang = () => setLang(lang === "en" ? "fr" : "en");
+
   return (
     <nav
       style={{
@@ -50,67 +72,86 @@ export default function Navbar() {
             нєανєηℓу
           </span>
         </Link>
-        {/* Links */}
-        <div style={{ display: "flex", gap: 32 }}>
-          <Link
-            to="/"
+        {/* Links and Language Switch */}
+        <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+          <div style={{ display: "flex", gap: 32 }}>
+            <Link
+              to="/"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                transition: "color 0.15s",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+              }}
+            >
+              {translations[lang].home}
+            </Link>
+            <Link
+              to="/causes"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                transition: "color 0.15s",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+              }}
+            >
+              {translations[lang].causes}
+            </Link>
+            <Link
+              to="/about"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                transition: "color 0.15s",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+              }}
+            >
+              {translations[lang].about}
+            </Link>
+            <Link
+              to="/contact"
+              style={{
+                color: "#fff",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "1.1rem",
+                transition: "color 0.15s",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+              }}
+            >
+              {translations[lang].contact}
+            </Link>
+          </div>
+          {/* Language Switch Button */}
+          <button
+            onClick={toggleLang}
             style={{
-              color: "#fff",
-              textDecoration: "none",
+              marginLeft: 32,
+              background: "#fff",
+              color: "#a300ff",
+              border: "2px solid #a300ff",
+              borderRadius: 8,
+              fontSize: "1rem",
+              padding: "6px 16px",
               fontWeight: 600,
-              fontSize: "1.1rem",
-              transition: "color 0.15s",
-              padding: "8px 0",
-              borderBottom: "2px solid transparent",
+              cursor: "pointer",
+              outline: "none",
+              transition: "background 0.15s, border 0.15s, color 0.15s",
             }}
-            activeStyle={{
-              borderBottom: "2px solid #fff",
-            }}
+            aria-label={`Switch to ${translations[lang].switch}`}
           >
-            Home
-          </Link>
-          <Link
-            to="/causes"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              transition: "color 0.15s",
-              padding: "8px 0",
-              borderBottom: "2px solid transparent",
-            }}
-          >
-            Causes
-          </Link>
-          <Link
-            to="/about"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              transition: "color 0.15s",
-              padding: "8px 0",
-              borderBottom: "2px solid transparent",
-            }}
-          >
-            About
-          </Link>
-          <Link
-            to="/contact"
-            style={{
-              color: "#fff",
-              textDecoration: "none",
-              fontWeight: 600,
-              fontSize: "1.1rem",
-              transition: "color 0.15s",
-              padding: "8px 0",
-              borderBottom: "2px solid transparent",
-            }}
-          >
-            Contact
-          </Link>
+            {translations[lang].switch}
+          </button>
         </div>
       </div>
     </nav>
