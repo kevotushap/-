@@ -148,7 +148,7 @@ export default function FeaturedCauses() {
     <section
       id="featured-causes"
       style={{
-        padding: "80px 0 110px 0",
+        padding: "48px 0 110px 0",
         background: `linear-gradient(rgba(30,23,53,0.54),rgba(30,23,53,0.54)),url(${calamityBackgroundImages[bgIndex]}) center/cover no-repeat fixed`,
         textAlign: "center",
         color: "#1a2330",
