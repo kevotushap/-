@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import calamityBackgroundImages from "./sharedBackgroundImages";
 
 // 50 fun and simple testimonials!
 const testimonialData = [
@@ -54,21 +55,7 @@ const testimonialData = [
   { text: "This site is a rainbow after rain.", author: "Sonny" },
 ];
 
-// FeaturedCauses background images
-const calamityBackgroundImages = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101178521-c1a9136a87e0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80"
-];
-
-const ROTATE_EVERY = 4000; // 4 seconds
+const ROTATE_EVERY = 4000;
 
 export default function Testimonials() {
   const [startIdx, setStartIdx] = useState(0);
@@ -91,7 +78,7 @@ export default function Testimonials() {
     <section
       style={{
         padding: "40px 0",
-        background: `url(${calamityBackgroundImages[bgIdx]}) center/cover no-repeat fixed`,
+        background: `linear-gradient(rgba(30,23,53,0.54),rgba(30,23,53,0.54)),url(${calamityBackgroundImages[bgIdx]}) center/cover no-repeat fixed`,
         textAlign: "center",
         color: "#fff",
         minHeight: 260,
@@ -99,7 +86,6 @@ export default function Testimonials() {
         transition: "background-image 1s",
       }}
     >
-      {/* No overlay: background is fully visible */}
       <div style={{ maxWidth: 900, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <h2
           style={{

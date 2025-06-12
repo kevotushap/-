@@ -29,7 +29,6 @@ export default function App() {
             <Route path="/blog" element={<Blog />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
-        
           </Routes>
         </main>
         <Footer />

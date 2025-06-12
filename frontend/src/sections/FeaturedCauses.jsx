@@ -1,21 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
-
-// Shared calamity background images (same as HowItWorks and Testimonials)
-const calamityBackgroundImages = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101178521-c1a9136a87e0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80"
-];
+import calamityBackgroundImages from "./sharedBackgroundImages";
 
 const causesData = [
-  // ... (same as your causesData array)
   {
     title: "Clean Water for All",
     description: "Help bring sustainable clean water to rural villages.",
@@ -140,14 +126,12 @@ const causesData = [
 
 export default function FeaturedCauses() {
   const scrollRef = useRef(null);
-
-  // Rotating background logic (shared, no custom hook)
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % calamityBackgroundImages.length);
-    }, 4000); // Same interval as Testimonials and HowItWorks
+    }, 4000);
     return () => clearInterval(interval);
   }, []);
 
@@ -165,7 +149,7 @@ export default function FeaturedCauses() {
       id="featured-causes"
       style={{
         padding: "80px 0 110px 0",
-        background: `url(${calamityBackgroundImages[bgIndex]}) center/cover no-repeat fixed`,
+        background: `linear-gradient(rgba(30,23,53,0.54),rgba(30,23,53,0.54)),url(${calamityBackgroundImages[bgIndex]}) center/cover no-repeat fixed`,
         textAlign: "center",
         color: "#1a2330",
         position: "relative",

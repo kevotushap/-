@@ -1,20 +1,6 @@
 import React, { useEffect, useState } from "react";
+import calamityBackgroundImages from "./sharedBackgroundImages";
 
-// Use the same calamity images as FeaturedCauses and Testimonials
-const calamityBackgroundImages = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1506784365847-bbad939e9335?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1444065381814-865dc9da92c0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1465101178521-c1a9136a87e0?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80"
-];
-
-// The steps of your process as nodes for the flowchart (removed Sign Up step)
 const steps = [
   { title: "Start a Cause", desc: "Tell your story and set your goal." },
   { title: "Share & Inspire", desc: "Share your cause with the world." },
@@ -36,7 +22,7 @@ export default function HowItWorks() {
     <section
       style={{
         padding: "60px 0 70px 0",
-        background: `url(${calamityBackgroundImages[bgIdx]}) center/cover no-repeat fixed`,
+        background: `linear-gradient(rgba(30,23,53,0.54),rgba(30,23,53,0.54)),url(${calamityBackgroundImages[bgIdx]}) center/cover no-repeat fixed`,
         minHeight: 500,
         position: "relative",
         transition: "background-image 1s"
