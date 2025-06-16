@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+ "postinstall": "node ./fix-vite-permissions.js",
  "dev": "vite",
   "build": "vite build",
   "preview": "vite preview"
