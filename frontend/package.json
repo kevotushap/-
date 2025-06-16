@@ -17,6 +17,7 @@
     "react-router-dom": "^6.0.0"
   },
   "devDependencies": {
+    "rollup": "4.17.2",
     "@vitejs/plugin-react": "4.5.2",
     "vite": "5.2.10"
   }
