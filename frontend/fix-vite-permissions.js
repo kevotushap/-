@@ -1,4 +1,4 @@
-// This script tries to fix vite permission issues on Linux, but does nothing on Windows
+// This script fixes vite permission issues on Linux, but does nothing on Windows
 const { exec } = require('child_process');
 if (process.platform !== 'win32') {
   exec('chmod +x node_modules/.bin/vite', (err) => {
